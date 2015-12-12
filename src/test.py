@@ -13,7 +13,7 @@ def run():
 	# mapping between each ar_marker ID and object in scene
 	map = {'ar_marker_4':'robot', 'ar_marker_0':'cube_1',  'ar_marker_1':'cube_2', 'ar_marker_2':'cube_3'}
 	states = dict()
-	goal = None;
+	goal = None
 
 	# transform listener to listen to ar_markers
 	tf_listener = tf.TransformListener()
@@ -26,16 +26,16 @@ def run():
 		except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException)
 			continue
 
-		pt_pose = Pose(Quaternion(0, 0, 0, 1), pt), rospy.Time(0), demo_robot_marker);
+		pt_pose = Pose(Quaternion(0, 0, 0, 1), pt), rospy.Time(0), demo_robot_marker)
 		tf_pt_pose = None;
 		# transform from ar_marker to usb_cam frame
-		tf_listener.transformPose("usb_cam", pt_pose, tf_pt_pose);
+		tf_listener.transformPose("usb_cam", pt_pose, tf_pt_pose)
 
 		# get xyz of demonstrator robot
-		geometry_msgs.Point ro_pt = None;
-		ro_pt.x = tf_pt_pose.getOrigin().x(); 
-		ro_pt.y = tf_pt_pose.getOrigin().y(); 
-		ro_pt.z = tf_pt_pose.getOrigin().z();	
+		geometry_msgs.Point ro_pt = None
+		ro_pt.x = tf_pt_pose.getOrigin().x()
+		ro_pt.y = tf_pt_pose.getOrigin().y()
+		ro_pt.z = tf_pt_pose.getOrigin().z()	
 
 		rate.sleep()
 
